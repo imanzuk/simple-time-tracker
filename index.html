@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/pico.min.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <title>Simple Time Tracker</title>
+    <script defer src="js/alpine.min.js"></script>
+    <script src="js/pico.modal.js"></script>
+    <script src="js/SimpleTimer.js"></script>
+    <script src="js/testdata.js"></script>
+    <script src="js/app.js"></script>
+</head>
+
+<body x-data="stt.projectListHandler">
+    <nav class="container">
+        <ul>
+            <li><strong>Simple Time Tracker</strong></li>
+        </ul>
+        <ul>
+            <li><strong><a href="./index.html">Projects</a></strong></li>
+            <li><a href="./timesheet.html">Time Sheet</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div class="project-list">
+            <div class="list-header">Track Time for Project</div>
+            <div class="list-separator new-item">
+                <input type="text"
+                    placeholder="Add new project ..."
+                    @keyup.debounce.250ms="handleKeyUp"
+                >
+            </div>
+            <template x-for="project in projects">
+                <div class="list-separator"
+                    @click="handleListItemClick"
+                >
+                    <span x-text="project"></span>
+                </div>
+            </template>
+        </div>
+    </main>
+
+    <dialog x-ref="trackingModal"
+        @keydown="preventClosingByKeyboard"
+    >
+        <article>
+            <header>
+                <button
+                    aria-label="Close"
+                    rel="prev"
+                    @click="hideModal"
+                ></button>
+                <h3>Track time</h3>
+            </header>
+            <main>
+                <div class="project-name">
+                    <span x-text="selectedProject"></span>
+                </div>
+                <div class="timer-container">
+                    <span x-text="elapsedTime"></span>
+                </div>
+                <textarea rows="3"
+                    placeholder="Describe the work log here ..."
+                    x-model="memo"
+                    x-ref="memo"
+                    @input.debounce.1000ms="handleMemoChange"
+                ></textarea>
+            </main>
+            <footer>
+                <div class="starttime-container">
+                    <span>Started at:</span><br>
+                    <span x-text="startedAtFormatted"></span>
+                </div>
+                <div class="flex-1"></div>
+                <button autofocus
+                    :class="{ 'secondary': isTimerRunning }"
+                    @click="startTimer"
+                >Start</button>
+                <button
+                    :class="{ 'secondary': !isTimerRunning }"
+                    @click="stopTimer"
+                >Stop</button>
+            </footer>
+        </article>
+    </dialog>
+</body>
+
+</html>

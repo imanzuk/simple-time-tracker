@@ -1,0 +1,43 @@
+.flex-1 {
+    flex: 1;
+}
+.col-180 {
+    width: 180px;
+}
+.col-200 {
+    width: 200px;
+}
+
+.timesheet-upper {
+    display: flex;
+}
+.timesheet-upper table {
+    border: var(--pico-border-width) solid var(--pico-table-border-color);
+}
+.timesheet-upper th:first-child {
+    border-right: 1px solid var(--pico-table-border-color);
+}
+.timesheet-upper td:first-child {
+    border-right: var(--pico-border-width) solid var(--pico-table-border-color);
+}
+td {
+    vertical-align: baseline;
+}
+
+nav.container {
+    background-color: white;
+    position: sticky;
+    top: 0;
+}
+
+.container {
+    max-width: 800px;
+}
+
+main.container-fluid {
+    padding: 1rem;
+}
+main.container-fluid hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

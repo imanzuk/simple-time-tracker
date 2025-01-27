@@ -1,0 +1,73 @@
+.flex-1 {
+    flex: 1;
+}
+.container {
+    max-width: 800px;
+}
+.project-list {
+    border: 1px #2579A9 solid;
+    border-radius: 10px;
+    text-align: center;
+    overflow: hidden;
+}
+.project-list div {
+    padding: 0.5rem 10px;
+}
+.project-list input[type=text] {
+    background-color: unset;
+    border: none;
+    height: unset;
+    margin-bottom: 0;
+    padding: 0;
+    text-align: center;
+}
+.project-list input[type=text]:focus {
+    --pico-box-shadow: 0;
+}
+.list-header {
+    background-color: lightgray;
+    font-weight: bold;
+}
+.list-separator {
+    border-top: 2px #2579A9 solid;
+}
+.new-item {
+    background-color: #D5F0FF;
+}
+::placeholder {
+    color: #B1B7BA !important;
+    text-align: center;
+}
+
+dialog header {
+    text-align: center;
+}
+dialog main {
+    margin-left: calc(var(--pico-block-spacing-horizontal) * -1);
+    margin-right: calc(var(--pico-block-spacing-horizontal) * -1);
+    text-align: center;
+}
+dialog textarea {
+    background-color: #EAEAEA;
+    border: 1px #79c0ff solid;
+    border-radius: 0;
+    margin-bottom: 0;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+}
+dialog textarea:focus {
+    --pico-box-shadow: 0 !important;
+}
+dialog footer {
+    display: flex;
+}
+
+.project-name {
+    font-size: 2rem;
+}
+.starttime-container {
+    text-align: left;
+}
+.timer-container {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/pico.min.css" />
+    <link rel="stylesheet" href="css/timesheet.css" />
+    <link rel="stylesheet" href="css/timesheet.print.css" media="print" />
+    <title>Simple Time Tracker | Time Sheet</title>
+    <script defer src="js/alpine.min.js"></script>
+    <script src="js/testdata.js"></script>
+    <script src="js/timesheet.js"></script>
+</head>
+
+<body x-data="stt.timesheetHandler">
+    <nav class="container">
+        <ul>
+            <li><strong>Simple Time Tracker</strong></li>
+        </ul>
+        <ul>
+            <li><a href="./index.html">Projects</a></li>
+            <li><strong><a href="./timesheet.html">Time Sheet</a></strong></li>
+        </ul>
+    </nav>
+
+    <main class="container-fluid">
+        <hr>
+        <div class="timesheet-upper">
+            <div class="flex-1">
+                <div>Export period: <span x-text="exportFrom"></span> - <span x-text="exportTill"></span></div>
+                <div>Created at: <span x-text="getCreatedAt"></span></div>
+            </div>
+            <div class="flex-1">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Project</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <template x-for="row in getTotals">
+                        <tr>
+                            <td><span x-text="row.project"></span></td>
+                            <td><span x-text="formatDuration(row.total)"></span></td>
+                        </tr>
+                    </template>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="timesheet-table">
+            <table class="striped">
+                <thead>
+                    <tr>
+                        <th scope="col" class="col-200">Project</th>
+                        <th scope="col" class="col-200">Start</th>
+                        <th scope="col" class="col-200">Finish</th>
+                        <th scope="col" class="col-180">Duration</th>
+                        <th scope="col">Memo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <template x-for="entry in timeSheetEntries">
+                    <tr>
+                        <td><span x-text="entry.project"></span></td>
+                        <td><span x-text="formatDate(entry.start)"></span></td>
+                        <td><span x-text="formatDate(entry.finish)"></span></td>
+                        <td><span x-text="formatDuration(entry.duration)"></span></td>
+                        <td><span x-text="entry.memo"></span></td>
+                    </tr>
+                </template>
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+</body>
+
+</html>
